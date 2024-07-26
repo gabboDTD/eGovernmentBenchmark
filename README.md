@@ -40,3 +40,7 @@ To activate the interface run:
    cd src
    streamlit run main_streamlit.py
    ```
+
+## Dashboard
+The app is available at 
+https://gabbodtd-egovernmentbenchmark-srcmain-streamlit-5njnjq.streamlit.app/
