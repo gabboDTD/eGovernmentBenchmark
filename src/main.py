@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 from translations import service_providers_translation, life_events_translation, services_translation
-from mapping import mapping_suggestions
+from mapping import mapping_services_suggestions
 
 def load_excel_sheets(file_path):
     """Load the relevant sheets into dataframes from an Excel file."""
@@ -20,7 +20,7 @@ def load_excel_sheets(file_path):
     
     return data_frames
 
-def preprocess_nat_services_data(df):
+def preprocess_services_data(df):
     """Preprocess the National Services Data dataframe."""
     df = df.iloc[:, 2:]
     header_row = df[df.iloc[:, 0] == 'Country'].index[0]
@@ -69,22 +69,52 @@ file_path = '../data/6_eGovernment_Benchmark_2023__Final_Results_Bgn33TdFY2NnN7G
 data_frames = load_excel_sheets(file_path)
 
 # Preprocess National Services Data
-nat_services_data_df = preprocess_nat_services_data(data_frames['nat_services_data_df'])
+nat_services_data_df = preprocess_services_data(data_frames['nat_services_data_df'])
+# Preprocess Cross Border Services Data
+cb_services_data_df = preprocess_services_data(data_frames['cb_services_data_df'])
 
 # Extract Italy's National Services Data
 italy_nat_services_data = extract_italy_data(nat_services_data_df)
 italy_nat_services_data.to_excel('../output/italy_nat_services_data.xlsx')
 
+# Extract Italy's National Services Data
+italy_cb_services_data = extract_italy_data(cb_services_data_df)
+italy_cb_services_data.to_excel('../output/italy_cb_services_data.xlsx')
+
 # Define relevant columns and capitalize specified columns
 relevant_columns = ["Service Provider", "Life event", "Service", "Url"]
 columns_to_capitalize = ["Service Provider", "Life event", "Service"]
 italy_nat_services_data = apply_capitalization(italy_nat_services_data, columns_to_capitalize)
+italy_cb_services_data = apply_capitalization(italy_cb_services_data, columns_to_capitalize)
 
 # Find 'No' columns for each service provider
-no_columns_per_provider = find_no_columns(italy_nat_services_data, relevant_columns)
+no_columns_nat_services_per_provider = find_no_columns(italy_nat_services_data, relevant_columns)
+
+# Replace 'Yes' with 'No' in specified columns
+columns_to_replace = [
+    'G3_1: barrier national eID required',
+    'G3_2: barrier eDoc required',
+    'G3_3: barrier translation/recog doc?',
+    'G3_4: barrier language issues',
+    'G3_5 Translation unclear',
+    'G3_6: barrier lack of information',
+    'G3_7: barrier need face to face meet?',
+    'G3_8: other barriers'
+]
+italy_cb_services_data[columns_to_replace] = italy_cb_services_data[columns_to_replace].replace('Yes', 'No')
+no_columns_cb_services_per_provider = find_no_columns(italy_cb_services_data, relevant_columns)
 
 # Convert the result to a DataFrame
-result_df = pd.DataFrame(no_columns_per_provider, columns=["Service Provider", "Life event", "Service", "Url", "Columns with 'No'"])
+result_nat_services_df = pd.DataFrame(no_columns_nat_services_per_provider, columns=["Service Provider", "Life event", "Service", "Url", "Columns with 'No'"])
+# Convert the result to a DataFrame
+result_cb_services_df = pd.DataFrame(no_columns_cb_services_per_provider, columns=["Service Provider", "Life event", "Service", "Url", "Columns with 'No'"])
+
+# Add a column specifying if it is a national service or a cross-border service
+result_nat_services_df['Service Type'] = 'Servizio Nazionale'
+result_cb_services_df['Service Type'] = 'Servizio Transfrontaliero'
+
+# Append the two DataFrames
+result_df = pd.concat([result_nat_services_df, result_cb_services_df], ignore_index=True)
 
 # Define translation dictionaries
 translation_dicts = {
@@ -97,7 +127,7 @@ translation_dicts = {
 result_df = translate_columns(result_df, translation_dicts)
 
 # Apply mapping suggestions to 'Columns with No'
-result_df['Columns with \'No\''] = result_df['Columns with \'No\''].apply(lambda x: [mapping_suggestions[col] for col in x])
+result_df['Columns with \'No\''] = result_df['Columns with \'No\''].apply(lambda x: [mapping_services_suggestions[col] for col in x])
 result_df = result_df[result_df['Columns with \'No\''].apply(lambda x: len(x) > 0)]
 
 # Save the result to an Excel file

@@ -1,4 +1,4 @@
-# mapping = {
+# mapping_nat_services = {
 #     "A1: information available online?": "Is information about the service available online?",
 #     "A2: service available online?": "Is the actual service available online?",
 #     "A3: available through portal?": "Is the service/information about the service available through (one of the) relevant portal(s)?",
@@ -40,7 +40,27 @@
 #     "F8: personal info required?": "Is any kind of eForm needed to access or apply for the service? (no score is attributed to this question, the question intends to landscape for how many/which process steps an eForm is required)",
 #     "F9: personal data pre-filled?": "When applying for this service is personal data pre-filled by the service provider? (based on data from authentic sources17 such as National register, Tax registers, Company registers etc.)",
 # }
-mapping_suggestions = {
+
+# mapping_cb_services = {
+#     'G1: information available foreigner?': 'Is information about the service available online for a cross-border user?',
+#     'G2: service available foreigner?': 'Can the service be obtained online by a cross-border user? (e.g. If needed, is it possible to submit a foreign version of a required document or does one need to translate first or request official recognition? If needed, is it possible to log in with a foreign eID?)',
+#     'G3_1: barrier national eID required': 'National online identification/authentication required',
+#     'G3_2: barrier eDoc required': 'Foreigner cannot submit required eDocuments',
+#     'G3_3: barrier translation/recog doc?': 'Need for translation or recognition of required document',
+#     'G3_4: barrier language issues': 'The website is not available in English (there is no integrated translation functionality on the website)',
+#     'G3_5: Translation unclear': 'The translation provided on the website is unclear or incorrect',
+#     'G3_6: barrier lack of information': 'Lack of information aiming at foreign users',
+#     'G3_7: barrier need face to face meet?': 'Need for physical encounter',
+#     'G3_8: other barriers': 'Other (to be provided by Mystery Shopper)',
+#     'I1: identification to access?': 'Is any kind of (online/offline) identification needed to access or apply for the cross-border service? (no score is attributed to this question, the question intends to landscape for how many/which process steps an eID is required)',
+#     'I2: authenticate using national eID?': 'If identification is needed for a cross-border service, is it possible to identify oneself online using your national eID?',
+#     'I3: documentation needed to access?': 'Is any kind of documentation needed to access or apply for the cross-border service? (no score is attributed to this question, the question intends to landscape for how many/which process steps an eDocument is relevant)',
+#     'I4_1: submit document in electronic form?': 'Is it possible for the user to submit the document that is required by the foreign service provider to complete procedures and formalities necessary to establish or to carry out a process step online (certificate, diploma, proof of registration etc) in an electronic form?',
+#     'I4_2: obtain document provided by the foreign service': 'Is it possible to obtain the document that is to be provided by the foreign service provider to the service recipient when completing procedures and formalities necessary to establish or to carry out a process step online (certificate, diploma, proof of registration etc) in an electronic form?'
+# }
+
+
+mapping_services_suggestions = {
     "A1: information available online?": "Rendere le informazioni sul servizio disponibili online",
     "A2: service available online?": "Rendere il servizio effettivo disponibile online",
     "A3: available through portal?": "Garantire che il servizio/le informazioni sul servizio siano disponibili tramite i portali rilevanti",
@@ -80,5 +100,20 @@ mapping_suggestions = {
     "F7_1: possible to submit eDoc?": "Consentire agli utenti di inviare i documenti richiesti in formato elettronico",
     "F7_2: possible to obtain eDoc?": "Consentire agli utenti di ottenere i documenti richiesti in formato elettronico",
     "F8: personal info required?": "Identificare se è richiesto qualche modulo elettronico per accedere o richiedere il servizio",
-    "F9: personal data pre-filled?": "Precompilare i dati personali nei moduli basati su dati provenienti da fonti autentiche"
+    "F9: personal data pre-filled?": "Precompilare i dati personali nei moduli basati su dati provenienti da fonti autentiche",
+    'G1: information available foreigner?': 'Rendere le informazioni sul servizio disponibili online per un utente transfrontaliero',
+    'G2: service available foreigner?': 'Garantire che il servizio possa essere ottenuto online da un utente transfrontaliero (ad es. consentire la presentazione di documenti stranieri, abilitare il login con un eID straniero)',
+    'G3_1: barrier national eID required': 'Rimuovere la barriera della necessità di identificazione/autenticazione online nazionale',
+    'G3_2: barrier eDoc required': 'Consentire la presentazione dei documenti elettronici richiesti dai cittadini stranieri',
+    'G3_3: barrier translation/recog doc?': 'Eliminare la necessità di traduzione o riconoscimento dei documenti richiesti',
+    'G3_4: barrier language issues': 'Fornire il sito web in inglese (o aggiungere funzionalità di traduzione integrata)',
+    'G3_5 Translation unclear': 'Garantire che la traduzione fornita sul sito web sia chiara e corretta',
+    'G3_6: barrier lack of information': 'Fornire informazioni sufficienti rivolte agli utenti stranieri',
+    'G3_7: barrier need face to face meet?': 'Rimuovere la necessità di un incontro fisico',
+    'G3_8: other barriers': 'Identificare e affrontare altre barriere (da fornire dal Mystery Shopper)',
+    'I1: identification to access?': 'Chiarire se è necessaria una qualche forma di identificazione (online/offline) per accedere o richiedere il servizio transfrontaliero',
+    'I2: authenticate using national eID?': 'Abilitare l\'identificazione online per i servizi transfrontalieri utilizzando eID nazionali',
+    'I3: documentation needed to access?': 'Chiarire se è necessaria una qualche forma di documentazione per accedere o richiedere il servizio transfrontaliero',
+    'I4_1: submit document in electronic form?': 'Consentire agli utenti di presentare i documenti richiesti in formato elettronico per completare le procedure e le formalità',
+    'I4_2: obtain document provided by the foreign service': 'Consentire agli utenti di ottenere documenti forniti dal fornitore di servizi straniero in formato elettronico quando completano le procedure e le formalità'
 }
