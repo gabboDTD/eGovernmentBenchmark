@@ -14,7 +14,7 @@ df = pd.read_excel(file_path)
 df['Columns with \'No\''] = df['Columns with \'No\''].apply(eval)
 
 # Sidebar navigation
-page = st.sidebar.selectbox("Seleziona la pagina", ["Suggerimenti ai Fornitore di Servizi", "Suggerimenti piu' Comuni"])
+page = st.sidebar.selectbox("Seleziona la pagina", ["Suggerimenti ai Fornitori di Servizi", "Suggerimenti piu' Comuni"])
 
 # Function to display data for a selected Service Provider grouped by Life event
 def display_provider_data(provider):
