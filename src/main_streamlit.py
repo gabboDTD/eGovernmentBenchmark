@@ -1,9 +1,13 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 # Load the dataset
-file_path = '../output/results.xlsx'  # Update with the correct file path if necessary
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+file_path = os.path.join(parent_dir, 'output', 'results.xlsx')
+
 df = pd.read_excel(file_path)
 
 # Convert string representation of lists to actual lists
