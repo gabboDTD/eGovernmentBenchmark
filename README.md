@@ -29,6 +29,12 @@ This project aims to analyze data from the eGovernment Benchmark to identify key
    ```
 
 ## Use
+To produce the files to be loaded in the interface run:
+   ```bash
+   cd src
+   run main.py
+   ```
+
 To activate the interface run:
    ```bash
    cd src
