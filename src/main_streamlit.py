@@ -14,12 +14,12 @@ df = pd.read_excel(file_path)
 df['Columns with \'No\''] = df['Columns with \'No\''].apply(eval)
 
 # Sidebar navigation
-page = st.sidebar.selectbox("Seleziona la pagina", ["Suggerimenti ai Fornitori di Servizi", "Suggerimenti piu' Comuni"])
+page = st.sidebar.selectbox("Seleziona la pagina", ["Istruzioni", "Suggerimenti ai Fornitori di Servizi", "Suggerimenti piu' Comuni"])
 
 # Function to display data for a selected Service Provider grouped by Life event
 def display_provider_data(provider, service_type=None):
     provider_data = df[df['Service Provider'] == provider]
-    if service_type:
+    if service_type and service_type != 'Tutto':
         provider_data = provider_data[provider_data['Service Type'] == service_type]
     life_events = provider_data['Life event'].unique()
     
@@ -35,8 +35,18 @@ def display_provider_data(provider, service_type=None):
                 st.markdown(f"- {item}")
             st.markdown("---")
 
-# Page 1: Dashboard Fornitori di Servizi
-if page == "Suggerimenti ai Fornitori di Servizi":
+# Page 1: Instructions
+if page == "Istruzioni":
+    st.title("Benvenuti nell'app eGovernment Benchmark")
+    st.markdown("""
+        ### Istruzioni per l'uso:
+        1. **Suggerimenti ai Fornitori di Servizi:** Seleziona un fornitore di servizi e un tipo di servizio per visualizzare i suggerimenti relativi.
+        2. **Suggerimenti piu' Comuni:** Visualizza i suggerimenti più comuni per migliorare l'eGovernment Benchmark, filtrati per tipo di servizio.
+        3. Utilizza la barra laterale per navigare tra le diverse pagine dell'applicazione.
+    """)
+
+# Page 2: Dashboard Fornitori di Servizi
+elif page == "Suggerimenti ai Fornitori di Servizi":
     st.title("Suggerimenti ai Fornitori di Servizi")
 
     # Service Provider selection
@@ -45,24 +55,21 @@ if page == "Suggerimenti ai Fornitori di Servizi":
 
     # Service Type selection
     service_types = df['Service Type'].unique()
-    selected_service_type = st.selectbox('Seleziona un tipo di servizio', ['Tutti'] + list(service_types))
+    selected_service_type = st.selectbox('Seleziona un tipo di servizio', ['Tutto'] + list(service_types))
 
     # Display data for the selected Service Provider grouped by Life event
     if selected_provider:
-        if selected_service_type == 'Tutti':
-            display_provider_data(selected_provider)
-        else:
-            display_provider_data(selected_provider, selected_service_type)
+        display_provider_data(selected_provider, selected_service_type)
 
-# Page 2: Suggerimenti Comuni
+# Page 3: Suggerimenti Comuni
 elif page == "Suggerimenti piu' Comuni":
     st.title("Suggerimenti piu' comuni per aumentare l'eGovernment Benchmark")
 
     # Service Type selection
     service_types = df['Service Type'].unique()
-    selected_service_type = st.selectbox('Seleziona un tipo di servizio', ['Tutti'] + list(service_types))
+    selected_service_type = st.selectbox('Seleziona un tipo di servizio', ['Tutto'] + list(service_types))
 
-    if selected_service_type == 'Tutti':
+    if selected_service_type == 'Tutto':
         filtered_df = df
     else:
         filtered_df = df[df['Service Type'] == selected_service_type]
