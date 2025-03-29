@@ -14,8 +14,8 @@ df = pd.read_excel(file_path)
 df['Columns with \'No\''] = df['Columns with \'No\''].apply(eval)
 
 # Sidebar navigation
-st.sidebar.title("📚 Menu di navigazione")
-page = st.sidebar.radio("Scegli una sezione dell'app", ["📖 Guida introduttiva", "🏛️ Suggerimenti per i fornitori di servizi", "📊 Suggerimenti più frequenti"])
+st.sidebar.title("📚 **Menu di navigazione**")
+page = st.sidebar.radio("Scegli una sezione per iniziare:", ["📘 **Guida introduttiva**", "🏛️ **Suggerimenti per gli enti**", "📊 **Azioni più raccomandate**"])
 
 # Function to display data for a selected Service Provider grouped by Life event
 def display_provider_data(provider, service_type=None):
@@ -36,41 +36,46 @@ def display_provider_data(provider, service_type=None):
                 st.markdown("---")
 
 # Page 1: Instructions
-if page == "📖 Guida introduttiva":
-    st.title("📘 Benvenuti nell'app eGovernment Benchmark")
+if page == "📘 **Guida introduttiva**":
+    st.title("📘 Benvenuti nell’applicazione eGovernment Benchmark")
     st.markdown("""
-        ### Come usare l'app:
-        - **Suggerimenti ai fornitori di servizi:** Esplora suggerimenti mirati per ogni fornitore.
-        - **Suggerimenti più comuni:** Scopri quali sono le azioni più frequentemente raccomandate.
-        - Naviga tramite la **barra laterale** per cambiare sezione.
+        ### Come iniziare:
+        - 🏛️ Accedi a suggerimenti mirati per ciascun ente pubblico nella sezione **Suggerimenti per gli enti**.
+        - 📊 Consulta le **azioni più frequenti** per l’ottimizzazione dei servizi digitali.
+        - 🔘 Utilizza la barra laterale per esplorare le sezioni disponibili.
     """)
 
-# Page 2: Dashboard Fornitori di Servizi
-elif page == "🏛️ Suggerimenti per i fornitori di servizi":
-    st.title("🏛️ Azioni suggerite per migliorare i servizi digitali")
-
+# Page 2: Dashboard Eenti di Servizi
+elif page == "🏛️ **Suggerimenti per gli enti**":
+    st.title("🏛️ Suggerimenti personalizzati per migliorare i servizi digitali")
+    with st.expander("ℹ️ Come vengono generati i suggerimenti", expanded=False):
+        st.markdown(
+            "I suggerimenti sono generati automaticamente sulla base dei dati raccolti nel benchmark europeo 2024. "
+            "Per ciascun servizio digitale che non soddisfa determinati criteri (valutati con *No*), "
+            "il sistema propone azioni concrete di miglioramento, utilizzando una mappatura curata di possibili interventi."
+        )
     col1, col2 = st.columns(2)
     with col1:
         providers = df['Service Provider'].unique()
-        selected_provider = st.selectbox('Seleziona un Ente o Amministrazione', providers)
+        selected_provider = st.selectbox('Ente erogatore', providers)
 
     with col2:
         service_types = df['Service Type'].unique()
-        selected_service_type = st.selectbox('Filtra per tipologia di servizio (opzionale)', ['Tutto'] + list(service_types))
+        selected_service_type = st.selectbox('Tipologia di servizio (opzionale)', ['Tutto'] + list(service_types))
 
     if selected_provider:
         display_provider_data(selected_provider, selected_service_type)
 
 # Page 3: Suggerimenti Comuni
-elif page == "📊 Suggerimenti più frequenti":
-    st.title("📊 Suggerimenti più comuni per aumentare l'eGovernment Benchmark")
+elif page == "📊 **Azioni più raccomandate**":
+    st.title("📊 Azioni più raccomandate per migliorare i servizi digitali pubblici")
 
     col1, col2 = st.columns(2)
     with col1:
-        selected_service_type = st.selectbox('Filtra per tipologia di servizio (opzionale)', ['Tutto'] + list(df['Service Type'].unique()))
+        selected_service_type = st.selectbox('Tipologia di servizio (opzionale)', ['Tutto'] + list(df['Service Type'].unique()))
     with col2:
         life_events = df['Life event'].unique()
-        selected_life_event = st.selectbox('Seleziona un Life Event', ['Tutti'] + list(life_events))
+        selected_life_event = st.selectbox('Evento della vita (Life Event) (opzionale)', ['Tutti'] + list(life_events))
 
     filtered_df = df.copy()
     if selected_service_type != 'Tutto':
@@ -82,7 +87,14 @@ elif page == "📊 Suggerimenti più frequenti":
     common_no_values = all_no_values.value_counts().reset_index()
     common_no_values.columns = ['Suggerimento', 'Frequenza']
 
-    st.subheader("📌 Suggerimenti più ricorrenti")
+    st.subheader("📌 Azioni suggerite più frequentemente")
+
+    st.markdown(
+        "Le azioni riportate di seguito sono quelle più frequentemente **raccomandate** "
+        "per migliorare la qualità dei servizi digitali pubblici. "
+        "Usa i filtri in alto per affinare la visualizzazione."
+    )
+
     fig, ax = plt.subplots(figsize=(10, 8))
     ax.barh(common_no_values['Suggerimento'], common_no_values['Frequenza'], color='skyblue')
     ax.set_xlabel('Frequenza')
