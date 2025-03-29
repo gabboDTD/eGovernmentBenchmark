@@ -70,7 +70,7 @@ service_providers_translation = {
     'Ersu Palermo': 'ERSU Palermo',
     'Almalaurea Consortium': 'Consorzio Almalaurea',
     'Revenue Agency': 'Agenzia delle Entrate',
-    'National Institute Of Social Security': 'Istituto Nazionale della Previdenza Sociale',
+    'National Institute Of Social Security': 'INPS - Istituto Nazionale della Previdenza Sociale',
     'Chamber Of Commerce': 'Camera di Commercio',
     'National Institute Of Statistics': 'Istituto Nazionale di Statistica',
     'Tax Agency': 'Agenzia delle Entrate',
@@ -117,8 +117,43 @@ service_providers_translation = {
     'Trenitalia': 'Trenitalia',
     'Ministry Of Education, Universities And Research, Urp - Public Relations Office': 'Ministero dell\'Istruzione, dell\'Università e della Ricerca, URP - Ufficio Relazioni con il Pubblico',
     'Ministry Of Foreign Affairs And International Cooperation': 'Ministero degli Affari Esteri e della Cooperazione Internazionale',
-    'Ministry Of Interior': 'Ministero dell\'Interno'
+    'Ministry Of Interior': 'Ministero dell\'Interno',
+    'Inps (national Previdenciary And Social Institute)': 'INPS - Istituto Nazionale della Previdenza Sociale',
+    'Unioncamera': 'Unioncamere',
+    'Health Ministry': 'Ministero della Salute',
+    'Ministry Of Transportation': 'Ministero dei Trasporti',
+    'Roma': 'Comune di Roma',
+    'Milano': 'Comune di Milano',
+    'Napoli': 'Comune di Napoli',
+    'Torino': 'Comune di Torino',
+    'Palermo': 'Comune di Palermo',
+    'Genova': 'Comune di Genova',
+    'Bologna': 'Comune di Bologna',
+    'Firenze': 'Comune di Firenze',
+    'Bari': 'Comune di Bari',
+    'Catania': 'Comune di Catania',
+    'Verona': 'Comune di Verona',
+    'Venezia': 'Comune di Venezia',
+    'Messina': 'Comune di Messina',
+    'Padova': 'Comune di Padova',
+    'Trieste': 'Comune di Trieste',
+    'Brescia': 'Comune di Brescia',
+    'Parma': 'Comune di Parma',
+    'Prato': 'Comune di Prato',
+    'Taranto': 'Comune di Taranto',
+    'Modena': 'Comune di Modena',
+    "Autostrade Per L'italia": "Autostrade per l'Italia",
+    'Inps': 'INPS - Istituto Nazionale della Previdenza Sociale',
+    'Anpal (agenzia Nazionale Di Politiche Di Lavoro)': 'ANPAL - Agenzia Nazionale Politiche Attive del Lavoro',
+    'The Italian Istituto Poligrafico E Zecca Dello Stato (ipzs)': 'Istituto Poligrafico e Zecca dello Stato (IPZS)',
+    'Anagrafe Nazionale': 'Anagrafe Nazionale',
+    'Ministry Of Education': 'Ministero dell\'Istruzione',
+    'Isee-universitario | Unige | Università Di Genova': 'ISEE Universitario | Università di Genova',
+    'City': 'Comune',
+    'Ministry Of Economy And Finance': 'Ministero dell\'Economia e delle Finanze',
+    'Regione': 'Regione'
 }
+
 
 # Create a dictionary for the translation of life events to Italian
 life_events_translation = {
@@ -228,5 +263,12 @@ services_translation = {
     '3.3 Appeal And Claim A Ticket Refund': 'Fare ricorso e richiedere un rimborso del biglietto',
     '2.1 Obtain Recognition Of Diploma Declaration': 'Ottenere il riconoscimento della dichiarazione di diploma',
     '2.1 Check Rights And Obligations For Moving Into Country': 'Verificare i diritti e gli obblighi per trasferirsi nel paese',
-    '2.2 Obtain A Registration Certificate': 'Ottenere un certificato di registrazione'    
+    '2.2 Obtain A Registration Certificate': 'Ottenere un certificato di registrazione',
+    '4.1 Report The Termination Of Business Activity, Excluding Involvement Of Insolvency Or Liquidation Procedures': 'Comunicare la cessazione dell’attività d’impresa, escludendo procedure di insolvenza o liquidazione',
+    '1.1 Register A Car': 'Registrare un’auto',
+    '6.5 Apply For A Pd A1 (certificate Of Coverage)': 'Richiedere un certificato di copertura (modulo PD A1)',
+    '8.1 Register As A Data Intermediation Service Provider': 'Registrarsi come fornitore di servizi di intermediazione dei dati',
+    '8.2 - Register As A (would-be) Data Altruism Organisation Recognised In The European Union': 'Registrarsi come organizzazione di altruismo dei dati (potenziale) riconosciuta nell’Unione Europea',
+    '5.1 Obtain Personalised Information On Your Future Pension': 'Ottenere informazioni personalizzate sulla propria futura pensione',
+    '2.1 Obtain Recognition Of Diploma Declaration, Certificates Or Other Proof Of Studies Or Courses': 'Ottenere il riconoscimento della dichiarazione di diploma, certificati o altra documentazione di studi o corsi'
 }
