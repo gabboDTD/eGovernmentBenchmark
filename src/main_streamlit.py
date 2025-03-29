@@ -14,8 +14,8 @@ df = pd.read_excel(file_path)
 df['Columns with \'No\''] = df['Columns with \'No\''].apply(eval)
 
 # Sidebar navigation
-st.sidebar.title("Navigazione")
-page = st.sidebar.radio("Seleziona la pagina", ["Istruzioni", "Suggerimenti ai fornitori di servizi", "Suggerimenti più comuni"])
+st.sidebar.title("📚 Menu di navigazione")
+page = st.sidebar.radio("Scegli una sezione dell'app", ["📖 Guida introduttiva", "🏛️ Suggerimenti per i fornitori di servizi", "📊 Suggerimenti più frequenti"])
 
 # Function to display data for a selected Service Provider grouped by Life event
 def display_provider_data(provider, service_type=None):
@@ -30,7 +30,7 @@ def display_provider_data(provider, service_type=None):
             for _, row in event_data.iterrows():
                 st.markdown(f"**🔹 Servizio:** {row['Service']}")
                 st.markdown(f"**🔗 URL:** [Vai al servizio]({row['Url']})")
-                st.markdown("**📋 Azioni Suggerite:**")
+                st.markdown("**📋 Azioni consigliate per il miglioramento:**")
                 for item in row["Columns with 'No'"]:
                     st.markdown(f"- {item}")
                 st.markdown("---")
@@ -47,16 +47,16 @@ if page == "Istruzioni":
 
 # Page 2: Dashboard Fornitori di Servizi
 elif page == "Suggerimenti ai fornitori di servizi":
-    st.title("🏛️ Suggerimenti ai fornitori di servizi")
+    st.title("🏛️ Azioni suggerite per migliorare i servizi digitali")
 
     col1, col2 = st.columns(2)
     with col1:
         providers = df['Service Provider'].unique()
-        selected_provider = st.selectbox('Seleziona un fornitore di servizi', providers)
+        selected_provider = st.selectbox('Seleziona un Ente o Amministrazione', providers)
 
     with col2:
         service_types = df['Service Type'].unique()
-        selected_service_type = st.selectbox('Seleziona un tipo di servizio', ['Tutto'] + list(service_types))
+        selected_service_type = st.selectbox('Filtra per tipologia di servizio (opzionale)', ['Tutto'] + list(service_types))
 
     if selected_provider:
         display_provider_data(selected_provider, selected_service_type)
@@ -67,7 +67,7 @@ elif page == "Suggerimenti più comuni":
 
     col1, col2 = st.columns(2)
     with col1:
-        selected_service_type = st.selectbox('Seleziona un tipo di servizio', ['Tutto'] + list(df['Service Type'].unique()))
+        selected_service_type = st.selectbox('Filtra per tipologia di servizio (opzionale)', ['Tutto'] + list(df['Service Type'].unique()))
     with col2:
         life_events = df['Life event'].unique()
         selected_life_event = st.selectbox('Seleziona un Life Event', ['Tutti'] + list(life_events))
