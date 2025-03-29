@@ -214,7 +214,8 @@ df['Columns with \'No\''] = df['Columns with \'No\''].apply(eval)
 
 # Sidebar navigation
 # Add SVG logo in the sidebar
-svg_path = "blue-fill-text-right.svg"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+svg_path = os.path.join(current_dir, "blue-fill-text-right.svg")
 if os.path.exists(svg_path):
     with open(svg_path, "rb") as svg_file:
         encoded_svg = base64.b64encode(svg_file.read()).decode("utf-8")
