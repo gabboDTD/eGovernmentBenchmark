@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import os
 from translations import service_providers_translation, life_events_translation, services_translation
 from mapping import mapping_services_suggestions_2025
@@ -140,3 +141,19 @@ result_df = result_df[result_df['Columns with \'No\''].apply(lambda x: len(x) > 
 
 # Save the result to an Excel file
 result_df.to_excel('../output/results_2024.xlsx', index=False)
+
+# Explode the list into separate rows
+exploded_df = result_df.explode("Columns with 'No'")
+
+# Rename the exploded column for clarity
+exploded_df = exploded_df.rename(columns={"Columns with 'No'": "Suggerimento"})
+
+# Optional: reorder columns
+columns_order = ["Service Provider", "Life event", "Service", "Suggerimento", "Service Type", "Url"]
+exploded_df = exploded_df[columns_order]
+
+# Replace Python None with NaN (interpreted as NULL)
+exploded_df = exploded_df.replace({None: np.nan})
+
+# Save as CSV ready for Superset
+exploded_df.to_csv('../output/results_2024_exploded.csv', index=False)
