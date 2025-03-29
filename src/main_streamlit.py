@@ -15,7 +15,7 @@ df['Columns with \'No\''] = df['Columns with \'No\''].apply(eval)
 
 # Sidebar navigation
 st.sidebar.title("Navigazione")
-page = st.sidebar.radio("Seleziona la pagina", ["Istruzioni", "Suggerimenti ai Fornitori di Servizi", "Suggerimenti più Comuni"])
+page = st.sidebar.radio("Seleziona la pagina", ["Istruzioni", "Suggerimenti ai fornitori di servizi", "Suggerimenti più comuni"])
 
 # Function to display data for a selected Service Provider grouped by Life event
 def display_provider_data(provider, service_type=None):
@@ -40,14 +40,14 @@ if page == "Istruzioni":
     st.title("📘 Benvenuti nell'app eGovernment Benchmark")
     st.markdown("""
         ### Come usare l'app:
-        - **Suggerimenti ai Fornitori di Servizi:** Esplora suggerimenti mirati per ogni fornitore.
-        - **Suggerimenti più Comuni:** Scopri quali sono le azioni più frequentemente raccomandate.
+        - **Suggerimenti ai fornitori di servizi:** Esplora suggerimenti mirati per ogni fornitore.
+        - **Suggerimenti più comuni:** Scopri quali sono le azioni più frequentemente raccomandate.
         - Naviga tramite la **barra laterale** per cambiare sezione.
     """)
 
 # Page 2: Dashboard Fornitori di Servizi
-elif page == "Suggerimenti ai Fornitori di Servizi":
-    st.title("🏛️ Suggerimenti ai Fornitori di Servizi")
+elif page == "Suggerimenti ai fornitori di servizi":
+    st.title("🏛️ Suggerimenti ai fornitori di servizi")
 
     col1, col2 = st.columns(2)
     with col1:
@@ -62,7 +62,7 @@ elif page == "Suggerimenti ai Fornitori di Servizi":
         display_provider_data(selected_provider, selected_service_type)
 
 # Page 3: Suggerimenti Comuni
-elif page == "Suggerimenti più Comuni":
+elif page == "Suggerimenti più comuni":
     st.title("📊 Suggerimenti più comuni per aumentare l'eGovernment Benchmark")
 
     col1, col2 = st.columns(2)
