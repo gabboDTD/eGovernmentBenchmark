@@ -214,14 +214,19 @@ df['Columns with \'No\''] = df['Columns with \'No\''].apply(eval)
 
 # Sidebar navigation
 # Add SVG logo in the sidebar
-st.sidebar.markdown(
-    """
-    <div class="logo-container">
-        <img src="data:image/svg+xml;base64,{encoded_svg}" />
-    </div>
-    """.format(encoded_svg=base64.b64encode(open("blue-fill-text-right.svg", "rb").read()).decode("utf-8")),
-    unsafe_allow_html=True
-)
+svg_path = "blue-fill-text-right.svg"
+if os.path.exists(svg_path):
+    with open(svg_path, "rb") as svg_file:
+        encoded_svg = base64.b64encode(svg_file.read()).decode("utf-8")
+    st.sidebar.markdown(
+        """
+        <div class="logo-container">
+            <img src="data:image/svg+xml;base64,{encoded_svg}" />
+        </div>
+        """.format(encoded_svg=base64.b64encode(open("blue-fill-text-right.svg", "rb").read()).decode("utf-8")),
+        unsafe_allow_html=True
+    )
+
 st.sidebar.title("📚 **Menu di navigazione**")
 page = st.sidebar.radio("Scegli una sezione per iniziare:", ["📘 **Guida introduttiva**", "🏛️ **Suggerimenti per gli enti**", "📊 **Azioni più raccomandate**"])
 
@@ -264,7 +269,7 @@ elif page == "🏛️ **Suggerimenti per gli enti**":
         )
     col1, col2 = st.columns(2)
     with col1:
-        providers = df['Service Provider'].unique()
+        providers = sorted(df['Service Provider'].dropna().unique())
         selected_provider = st.selectbox('Ente erogatore', providers)
 
     with col2:
