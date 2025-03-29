@@ -36,7 +36,7 @@ def display_provider_data(provider, service_type=None):
                 st.markdown("---")
 
 # Page 1: Instructions
-if page == "Istruzioni":
+if page == "📖 Guida introduttiva":
     st.title("📘 Benvenuti nell'app eGovernment Benchmark")
     st.markdown("""
         ### Come usare l'app:
@@ -46,7 +46,7 @@ if page == "Istruzioni":
     """)
 
 # Page 2: Dashboard Fornitori di Servizi
-elif page == "Suggerimenti ai fornitori di servizi":
+elif page == "🏛️ Suggerimenti per i fornitori di servizi":
     st.title("🏛️ Azioni suggerite per migliorare i servizi digitali")
 
     col1, col2 = st.columns(2)
@@ -62,7 +62,7 @@ elif page == "Suggerimenti ai fornitori di servizi":
         display_provider_data(selected_provider, selected_service_type)
 
 # Page 3: Suggerimenti Comuni
-elif page == "Suggerimenti più comuni":
+elif page == "📊 Suggerimenti più frequenti":
     st.title("📊 Suggerimenti più comuni per aumentare l'eGovernment Benchmark")
 
     col1, col2 = st.columns(2)
